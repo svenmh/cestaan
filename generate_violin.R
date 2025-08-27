@@ -2,6 +2,8 @@
 
 options(bitmapType='cairo')
 
+CESTAAN_ROOT <- Sys.getenv("PWD")
+
 # Load packages
 suppressPackageStartupMessages({
 	library(Seurat)
@@ -32,9 +34,9 @@ split_by <- if (args$differential) "genotype" else NULL
 dataset <- args$dataset
 # ---- Load Seurat Object ----
 if (args$dataset) {
-	seurat_obj <- readRDS("/var/www/ctvm1/murphy-lab-project/source_data/Male_herm.rds")
+	seurat_obj <- readRDS(paste(CESTAAN_ROOT, "source_data/Male_herm.rds", sep='/'))
 } else {
-	seurat_obj <- readRDS("/var/www/ctvm1/murphy-lab-project/source_data/WT_daf2.rds")
+	seurat_obj <- readRDS(paste(CESTAAN_ROOT, "source_data/WT_daf2.rds", sep='/')
 }
 
 #seurat_obj <- readRDS("/var/www/ctvm1/murphy-lab-project/source_data/WT_daf2.rds")

@@ -1,0 +1,10 @@
+faicons
+shiny
+shinywidgets
+plotly
+pandas
+ridgeplot
+pandas
+pytabulator
+openpyxl
+gdown

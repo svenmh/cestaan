@@ -1,0 +1,6 @@
+@media (prefers-color-scheme: dark) {
+	.dataframe thead th {
+		color: black !important;
+		background-color: #add !important;
+	}
+}

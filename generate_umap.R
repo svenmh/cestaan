@@ -4,6 +4,8 @@
 
 options(bitmapType='cairo')
 
+CESTAAN_ROOT <- Sys.getenv("PWD")
+
 # Load necessary packages
 suppressPackageStartupMessages({
   library(Seurat)
@@ -31,9 +33,9 @@ dataset <- args$dataset
 #gene2 <- if (length(args) >= 3) args[3] else NULL
 
 if (args$dataset) {
-	seurat_obj <- readRDS("/var/www/ctvm1/murphy-lab-project/source_data/Male_herm.rds")
+	seurat_obj <- readRDS(paste(CESTAAN_ROOT, "source_data/Male_herm.rds", sep='/'))
 } else {
-	seurat_obj <- readRDS("/var/www/ctvm1/murphy-lab-project/source_data/WT_daf2.rds")
+	seurat_obj <- readRDS(paste(CESTAAN_ROOT, "source_data/WT_daf2.rds", sep='/'))
 }
 print(class(seurat_obj))
 

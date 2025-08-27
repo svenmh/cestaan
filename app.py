@@ -16,6 +16,7 @@ import uuid
 from datetime import datetime
 import time
 
+CESTAAN_ROOT=os.environ['PWD']
 
 TEST_IMAGE_PATH = "umap_d94499a4129f4fc580709eb9aa88cacd.png"
 here = Path(__file__).parent #defines our current dicrectory
@@ -424,11 +425,11 @@ def server(input, output, session):
         mod_counter.set(counter)
         query_id = f"query_{counter}"
         unique_filename = f"umap_{uuid.uuid4().hex}.png"
-        output_path = os.path.join("/var/www/ctvm1/murphy-lab-project/www", unique_filename)
+        output_path = os.path.join(CESTAAN_ROOT, "www", unique_filename)
         
 
         #Call R script with 1 or 2 genes and output path
-        r_script = "/var/www/ctvm1/murphy-lab-project/generate_umap.R"
+        r_script = os.path.join(CESTAAN_ROOT, "generate_umap.R")
         cmd = ["Rscript", r_script, gene1, output_path]
 
         if gene2:
@@ -562,7 +563,7 @@ def server(input, output, session):
         filename = f"violin_{uuid.uuid4().hex}.png"
         
         output_rel_path = f"www/{filename}"
-        output_abs_path = os.path.join("/var/www/ctvm1/murphy-lab-project", output_rel_path)
+        output_abs_path = os.path.join(CESTAAN_ROOT, output_rel_path)
 
         # Build Rscript command
         #r_script = "/var/www/ctvm1/murphy-lab-project/generate_violin.R"
