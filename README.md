@@ -5,12 +5,12 @@
 
 Check code out from github.  Go into the `cestaan` directory.
 
-`mkdir data source_data scripts/source_data`, then copy data there.[^*]
+`mkdir data source_data scripts/source_data`, then copy data there.*
 `cd scripts` and run the `create_database.py` command.  Move the
 `scripts/data/output.sqlite` file to `data/output.sqlite`.
 
 Check `app.py`, `generate_umap.R`, and `generate_violin.R` and make
-sure `CESTAAN_ROOT` is logical.[^†]
+sure `CESTAAN_ROOT` is logical.†
 
 `mkdir venv`, and then `virtualenv venv`.  Use `venv/bin/pip` to
 install pacages listed in `requirements.txt`.
@@ -37,6 +37,8 @@ WantedBy=multi-user.target
 
 The point your browser to port 8070, or set up a web server to proxy to that port.
 
-[^*] Not yet sure where to get the data.
+### Footnotes
 
-[^†] Should create global config.
+\* Not yet sure where to get the data.
+
+† Should create global config.
