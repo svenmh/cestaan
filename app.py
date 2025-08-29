@@ -245,7 +245,9 @@ app_ui = ui.page_sidebar(
                     ui.br(),
                     ui.h3("Seurat Object"),
                     ui.p("The single nucleus data is an .rds file containing Seurat objects for all cells. This website contains many optimized queries for interfacing with the data, but if your analysis is more fine-grained, you may download the 7GB object below."),
-                    ui.download_button("download_raw_data", "Download data"),
+                    ui.download_button("download_raw_data", "Download WT/daf-2 Data"),
+                    ui.br(),
+                    ui.download_button("download_male_data", "Download Male data"),
 
                     ui.div(
                         ui.h3("snSeq Papers by the Murphy Lab"),
@@ -563,7 +565,8 @@ def server(input, output, session):
         filename = f"violin_{uuid.uuid4().hex}.png"
         
         output_rel_path = f"www/{filename}"
-        output_abs_path = os.path.join(CESTAAN_ROOT, output_rel_path)
+        output_abs_path = os.path.join(CESTAAN_ROOT,output_rel_path)
+        print(output_abs_path)
 
         # Build Rscript command
         #r_script = "/var/www/ctvm1/murphy-lab-project/generate_violin.R"
@@ -590,7 +593,7 @@ def server(input, output, session):
 
             
         try:
-            result = subprocess.run(r_command,capture_output=True, text=True, check=True)
+            result = subprocess.run(r_command, capture_output=True, text=True, check=True)
             print("Violin plot generated successfully.")
             print(f"[DEBUG] Violin plot image at: {output_abs_path}")
         except FileNotFoundError:
@@ -612,7 +615,7 @@ def server(input, output, session):
         query_umap_server(
                 id=query_id,
                 remove_id=query_id,
-                img_path=output_rel_path,
+                img_path=filename,
                 name=f"Violin Plot: {genes} in {neurons}",
                 is_two_genes=(len(genes.split(",")) > 1)
             )
@@ -622,7 +625,11 @@ def server(input, output, session):
     @render.download()
     def download_raw_data():
         return "source_data/WT_daf2.rds"
-    
+   
+    @render.download()
+    def download_male_data():
+        return "source_data/Male_herm.rds"
+
     @render.image
     def umap_image():
         img = {"src": here / "umap.png", "height": "450px"}  

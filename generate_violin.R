@@ -2,7 +2,7 @@
 
 options(bitmapType='cairo')
 
-CESTAAN_ROOT <- Sys.getenv("PWD")
+CESTAAN_ROOT <- ("/var/www/cestaan/")
 
 # Load packages
 suppressPackageStartupMessages({
@@ -32,11 +32,13 @@ neurons <- strsplit(args$neurons, ",")[[1]]
 output_file <- args$output
 split_by <- if (args$differential) "genotype" else NULL
 dataset <- args$dataset
+
+print("arguments parsed")
 # ---- Load Seurat Object ----
 if (args$dataset) {
 	seurat_obj <- readRDS(paste(CESTAAN_ROOT, "source_data/Male_herm.rds", sep='/'))
 } else {
-	seurat_obj <- readRDS(paste(CESTAAN_ROOT, "source_data/WT_daf2.rds", sep='/')
+	seurat_obj <- readRDS(paste(CESTAAN_ROOT, "source_data/WT_daf2.rds", sep='/'))
 }
 
 #seurat_obj <- readRDS("/var/www/ctvm1/murphy-lab-project/source_data/WT_daf2.rds")
