@@ -40,6 +40,6 @@ The point your browser to port 8070, or set up a web server to proxy to that por
 
 ### Footnotes
 
-* Not yet sure where to get the data.
+ * Not yet sure where to get the data.
 
-† Should create global config.
+ † Should create global config.
